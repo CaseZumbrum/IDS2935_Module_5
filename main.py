@@ -12,7 +12,7 @@ pipe = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-1.7B-Instruct", 
 r = sr.Recognizer() 
 
 messages = [
-{"role": "system", "content": "You are an AI assistant helping a person with autism socialize. Whatever a user says to you, provide a list of three possible responses to their sentence following standard python list syntax."},
+{"role": "system", "content": "Whatever a user says to you, provide a list of three possible responses to their sentence following standard python list syntax."},
 ]
     
 # Loop infinitely for user to
