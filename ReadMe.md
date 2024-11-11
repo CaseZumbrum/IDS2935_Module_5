@@ -7,12 +7,14 @@ For this design challenge, the purple group is designing an app to assist those 
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 ### Windows
 ```
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
 ## App Flowchart
