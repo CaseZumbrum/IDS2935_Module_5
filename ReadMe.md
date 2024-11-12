@@ -40,3 +40,12 @@ flowchart TD
 ```
 
 
+## Issue with LLM
+The LLM by default does not support enough tokens, need to do a small override
+```
+.venv\Lib\site-packages\transformers\pipelines\text_generation.py
+```
+add at line 369 
+```
+generate_kwargs["generation_config"].max_new_tokens = 100
+```
