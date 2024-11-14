@@ -1,11 +1,12 @@
-# Python program to translate
-# speech to text and text to speech
-
-
 import speech_recognition as sr
 
 from transformers import pipeline
+import pygame
 
+# Other options for the LLM, the 135m and 360m are much smaller (faster), but do not reliably produce a parsable output
+
+#pipe = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-135M-Instruct", device="cuda")
+#pipe = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-360M-Instruct", device="cuda")
 pipe = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-1.7B-Instruct", device="cuda")
 
 # Initialize the recognizer 
@@ -18,6 +19,13 @@ messages = [
 # Loop infinitely for user to
 # speak
 print("ready")
+pygame.init()
+
+screen = pygame.display.set_mode((1920, 1200))
+pygame.display.set_caption("Design Challenge")
+screen.fill((255,255,255))
+pygame.display.flip()
+
 while(1):    
     
     # Exception handling to handle
