@@ -1,15 +1,20 @@
 # IDS2935 Design Challenge 2
+
 For this design challenge, the purple group is designing an app to assist those with difficulty socializing
 
 ## Build
+
 ### Linux
+
 ```
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
+
 ### Windows
+
 ```
 python -m venv .venv
 .\.venv\Scripts\activate
@@ -18,6 +23,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 ```
 
 ## App Flowchart
+
 ```mermaid
 flowchart TD
     A[wait for microphone input] --voice differentation--> B[seperate voices into speakers]
@@ -28,6 +34,7 @@ flowchart TD
 ```
 
 ## Voice Differentiation Flowchart (Not yet implemented)
+
 ```mermaid
 flowchart TD
     A[Wait for microphone input] --> B[Run current voice differentation network on waveform]
@@ -39,13 +46,28 @@ flowchart TD
 
 ```
 
+## Speech to Text Flowchart
+
+```mermaid
+flowchart TD
+    A[Audio Waveform input] --> B[Noise filtering]
+    B --Speech detected-->C[Voice differentiation]
+    C --Tagged voice-->D[Speech to text]
+    D --Text produced-->E[LLM]
+    D --Text failed to match speech --> A
+    E-->A
+```
 
 ## Issue with LLM
+
 The LLM by default does not support enough tokens, need to do a small override
+
 ```
 .venv\Lib\site-packages\transformers\pipelines\text_generation.py
 ```
-add at line 369 
+
+add at line 369
+
 ```
 generate_kwargs["generation_config"].max_new_tokens = 100
 ```
